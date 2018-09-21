@@ -14,6 +14,45 @@ namespace PRO1.Controllers
         {
             this.ORM = ORM;
         }
+        [HttpGet]
+        public IActionResult AddStudent()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddStudent(Student student)
+        {
+            ORM.Add(student);
+
+            ORM.SaveChanges();
+            ViewBag.Message = "Registration Done Successfully";
+            ModelState.Clear();
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public IActionResult Index()
         {
             return View();
