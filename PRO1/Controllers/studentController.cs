@@ -52,7 +52,14 @@ namespace PRO1.Controllers
             IList<Student> AllStudents = ORM.Student.Where(m => m.Name.Contains(SearchByName) || m.Class.Contains(SearchByName)).ToList<Student>();
             return View(AllStudents);
         }
-
+        public IActionResult DeleteStudent(Student S)
+        {
+            // Student S =  ORM.Student.Where(a => a.Id == Id).FirstOrDefault<Student>();
+            ORM.Student.Remove(S);
+            ORM.SaveChanges();
+            //return View("AllStudents");
+            return RedirectToAction("AllStudents");
+        }
 
 
 
