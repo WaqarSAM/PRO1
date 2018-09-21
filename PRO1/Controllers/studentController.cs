@@ -60,6 +60,21 @@ namespace PRO1.Controllers
             //return View("AllStudents");
             return RedirectToAction("AllStudents");
         }
+        [HttpGet]
+        public IActionResult EditStudent(int Id)
+        {
+
+            Student S = ORM.Student.Where(m => m.Id == Id).FirstOrDefault<Student>();
+            return View(S);
+        }
+        [HttpPost]
+        public IActionResult EditStudent(Student S)
+        {
+            ORM.Student.Update(S);
+            ORM.SaveChanges();
+            //Student S = ORM.Student.Where(m => m.Id == Id).FirstOrDefault<Student>();
+            return RedirectToAction("AllStudents");
+        }
 
 
 
