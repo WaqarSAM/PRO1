@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using PRO1.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PRO1.Models;
 
 namespace PRO1
 {
@@ -34,9 +35,14 @@ namespace PRO1
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<StudentRegContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("PR")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
