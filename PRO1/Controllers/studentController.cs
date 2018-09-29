@@ -98,13 +98,20 @@ namespace PRO1.Controllers
             return View(S);
         }
         
-        public IActionResult DeleteStudent(Student S)
+        public string  deleteStudent (Student S)
         {
-            // Student S =  ORM.Student.Where(a => a.Id == Id).FirstOrDefault<Student>();
-            _ORM.Student.Remove(S);
-            _ORM.SaveChanges();
-            //return View("AllStudents");
-            return RedirectToAction("AllStudents");
+            string result = "";
+            try
+            {
+                _ORM.Student.Remove(S);
+                _ORM.SaveChanges();
+                result = "Yes";
+            }
+            catch (Exception e)
+            {
+                result = "No";
+            }
+            return result;
         }
         [HttpGet]
         public IActionResult EditStudent(int Id)

@@ -21,6 +21,7 @@
             <td>Depratment:</td>
             <td>Description</td>
         </tr>
+        </thead>
     <tbody>
         @foreach (Student S in Model)
         {
@@ -31,12 +32,42 @@
                 <td>@S.Class</td>
                 <td>@S.Department</td>
                 <td>
-                    <a href="/student/StudentDetail?Id=@S.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok"></span> Detail</a>
-                    <a href="/student/EditDetail?Id=@S.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok"></span> Edit</a>
-                    <a href="/student/DeleteStudent?Id=@S.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                    <a href="/student/StudentDetail?Id=@S.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-floppy-open"></span> Detail</a>
+                    <a href="/student/EditDetail?Id=@S.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    <a href="#" data-studentid="@S.Id" class="btn btn-danger DeleteStudent"><span class="glyphicon glyphicon-remove"></span> Delete</a>
                 </td>
             </tr>
         }
     </tbody>
-    </thead>
 </table>
+
+@section Scripts
+    {
+    <script>
+         $(function () {
+             $('.DeleteStudent').click(function () {
+                var clickedbutton = $(this);
+                var studentid = $(this).data("studentid");
+                $(this).text("Procession");
+                $.ajax({
+                    url: "/student/deletestudent",
+                    type: "POST",
+                    data: {
+                        Id: studentid,
+                        Email: "a@a.com"
+                    },
+                    complete: function (myresult) {
+                         if (myresult.responseText == "Yes") {
+                            clickedbutton.parent().parent().addClass("danger");
+                            clickedbutton.parent().parent().fadeOut(5000);
+
+                        } else {
+                            alert("Please try again");
+                        }
+                    }
+                });
+             });
+        });
+    </script>
+    
+}
