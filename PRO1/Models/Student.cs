@@ -7,6 +7,10 @@ namespace PRO1.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string FatherName { get; set; }
         public string Class { get; set; }
+        public string Department { get; set; }
+        public string Email { get; set; }
+        public string Cv { get; set; }
     }
 }

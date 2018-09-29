@@ -40,6 +40,27 @@ namespace PRO1.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.FatherName)
+                   .IsRequired()
+                   .HasMaxLength(50)
+                   .IsUnicode(false);
+
+                entity.Property(e => e.Department)
+                  .IsRequired()
+                  .HasMaxLength(50)
+                  .IsUnicode(false);
+
+                entity.Property(e => e.Email)
+                 .IsRequired()
+                 .HasMaxLength(50)
+                 .IsUnicode(false);
+
+                entity.Property(e => e.Cv)
+                 .IsRequired()
+                 .HasMaxLength(250)
+                 .IsUnicode(false);
+
             });
 
             modelBuilder.Entity<Teacher>(entity =>
